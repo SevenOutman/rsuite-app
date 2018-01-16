@@ -5,7 +5,7 @@ const commonRules = require('./webpack/rules');
 
 module.exports = {
   entry: [
-    path.join(__dirname, 'src/index')
+    path.join(__dirname, 'src/main')
   ],
   resolve: {
     alias: {

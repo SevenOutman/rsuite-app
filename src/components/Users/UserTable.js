@@ -15,6 +15,7 @@ import {
 } from '../CustomTableCells';
 import UserModal from './UserModal';
 import chain from '../../utils/createChainedFunction';
+import { localize as l } from '@rsuite/framework/helpers';
 
 const propTypes = {
   data: PropTypes.array,
@@ -68,11 +69,12 @@ class UserTable extends Component {
       total: page.total || 0
     });
   }
+
   getSystemRoleFilterComponent() {
     let items = [
-      <Dropdown.Item key={1} eventKey="ALL" >全部</Dropdown.Item>,
-      <Dropdown.Item key={2} eventKey="ROLE_USER" >用户</Dropdown.Item>,
-      <Dropdown.Item key={3} eventKey="ROLE_GROUP" >管理员</Dropdown.Item>
+      <Dropdown.Item key={1} eventKey="ALL">全部</Dropdown.Item>,
+      <Dropdown.Item key={2} eventKey="ROLE_USER">用户</Dropdown.Item>,
+      <Dropdown.Item key={3} eventKey="ROLE_GROUP">管理员</Dropdown.Item>
     ];
     return (
       <Dropdown activeKey={'ALL'} select onSelect={chain(this.handleChangeSystemRole)}>
@@ -91,6 +93,7 @@ class UserTable extends Component {
     return plugins;
 
   }
+
   getActions() {
     return [{
       label: '编辑',
@@ -111,7 +114,7 @@ class UserTable extends Component {
           sortable: true,
           resizable: true
         },
-        label: <FormattedMessage id="status" />,
+        label: l('status'),
         cell: <StatusCell dataKey="status" />
       },
       {

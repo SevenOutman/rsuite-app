@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Table, Column, Cell, HeaderCell } from 'rsuite-table';
 import { Auth } from '@rsuite/framework';
-import { title } from '@rsuite/framework/view';
+import { title } from '@rsuite/framework/helpers';
 
 import { TableResizeHoc } from '../../hoc';
 import PageTitleBar from '../../components/PageTitleBar';
@@ -51,7 +51,6 @@ class EventTable extends Component {
 
     return (
       <div className="page-content">
-        {title('EVENTTABLE')}
         <PageTitleBar title="Events" />
         <Table
           height={this.props.tableHeight}
@@ -82,7 +81,6 @@ class EventTable extends Component {
             <HeaderCell>Repo</HeaderCell>
             <ObjectCell dataKey="repo.name" />
           </Column>
-
 
           <Column width={300} resizable>
             <HeaderCell>Commits</HeaderCell>

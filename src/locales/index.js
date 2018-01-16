@@ -1,7 +1,7 @@
 import en from './en-US';
 import zh from './zh-CN';
 
-export default {
-  'en': en,
-  'zh': zh
+module.exports = {
+  en,
+  zh
 };
