@@ -34,7 +34,7 @@ module.exports = {
     },
     {
       path: '*',
-      component: require('@rsuite/framework/src/pages').ErrorNotFound
+      component: require('@rsuite/framework/pages').ErrorNotFound
     }
   ]
 };

@@ -1,11 +1,5 @@
-import { Application } from '@rsuite/framework/src/application';
+import { Application } from './framework';
 
-const app = new Application({
-  config: require('./config'),
-  reducers: require('./reducers'),
-  routes: require('./routes'),
-  locales: require('./locales')
-});
-
+const app = new Application();
 
 app.start('#mount');

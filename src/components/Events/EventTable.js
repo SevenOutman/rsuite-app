@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Table, Column, Cell, HeaderCell } from 'rsuite-table';
 import { Auth } from '@rsuite/framework';
-import { title } from '@rsuite/framework/src/view';
+import { title } from '@rsuite/framework/view';
 
 import { TableResizeHoc } from '../../hoc';
 import PageTitleBar from '../../components/PageTitleBar';

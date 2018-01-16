@@ -7,6 +7,11 @@ module.exports = {
   entry: [
     path.join(__dirname, 'src/index')
   ],
+  resolve: {
+    alias: {
+      react: path.resolve(__dirname, 'node_modules/@rsuite/framework/node_modules/react'),
+    },
+  },
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',

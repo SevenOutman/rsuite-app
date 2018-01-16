@@ -67,7 +67,7 @@ function generate() {
   } else {
     result.childRoutes.push({
       path: '*',
-      component: `require('@rsuite/framework/src/pages').ErrorNotFound`,
+      component: `require('@rsuite/framework/pages').ErrorNotFound`,
     });
   }
   const raw = JSON.stringify(result, null, '  ');
