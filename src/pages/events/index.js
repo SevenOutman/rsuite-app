@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import * as actionCreators from '../../actions/events';
 import EventTable from '../../components/Events/EventTable';
 import PageTitleBar from '../../components/PageTitleBar';

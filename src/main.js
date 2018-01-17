@@ -9,5 +9,4 @@ require('./less/index.less');
 import { Application } from './framework';
 
 const app = new Application(require('./config'));
-
 app.start('#mount');

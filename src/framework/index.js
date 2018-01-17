@@ -8,5 +8,8 @@ export class Application extends BaseApplication {
     this.registerStore(require('../reducers'));
     this.registerRoutes(require('../routes'));
     this.registerLocales(require('../locales'));
+
+    // if config.useORM
+    this.registerModels(require('../models'));
   }
 }

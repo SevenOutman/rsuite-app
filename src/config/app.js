@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   /**
    * App Name
    *
@@ -10,5 +10,5 @@ export default {
    * Default Locale
    *
    */
-  locale: 'zh'
-}
+  locale: 'zh',
+};
