@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Table, Column, Cell, HeaderCell } from 'rsuite-table';
-import { Auth } from '@rsuite/framework';
-import { title } from '@rsuite/framework/helpers';
+import { app } from '@rsuite/framework/helpers';
 
 import { TableResizeHoc } from '../../hoc';
 import PageTitleBar from '../../components/PageTitleBar';
@@ -24,13 +23,12 @@ const propTypes = {
 
 const defaultProps = {
   tableDefaultHeight: 400,
-  frameHeight: 140
+  frameHeight: 140,
 };
 
 class EventTable extends Component {
 
   componentDidMount() {
-    console.log(Auth.user());
     const { onFetchEvents } = this.props;
     onFetchEvents();
   }
@@ -41,7 +39,7 @@ class EventTable extends Component {
 
   handleChangeLength = (dataKey) => {
     this.setState({
-      displayLength: dataKey
+      displayLength: dataKey,
     });
   }
 
@@ -50,44 +48,41 @@ class EventTable extends Component {
     const tableLocale = getTableLocale(status, data);
 
     return (
-      <div className="page-content">
-        <PageTitleBar title="Events" />
-        <Table
-          height={this.props.tableHeight}
-          data={data}
-          headerHeight={40}
-          rowHeight={40}
-          locale={tableLocale}
-        >
-          <Column width={200} fixed resizable>
-            <HeaderCell>Type</HeaderCell>
-            <Cell dataKey="type" />
-          </Column>
-          <Column width={120} resizable>
-            <HeaderCell>ID</HeaderCell>
-            <Cell dataKey="id" />
-          </Column>
-          <Column width={260} resizable>
-            <HeaderCell>Created at</HeaderCell>
-            <ObjectCell dataKey="created_at" />
-          </Column>
+      <Table
+        height={this.props.tableHeight}
+        data={data}
+        headerHeight={40}
+        rowHeight={40}
+        locale={tableLocale}
+      >
+        <Column width={200} fixed resizable>
+          <HeaderCell>Type</HeaderCell>
+          <Cell dataKey="type" />
+        </Column>
+        <Column width={120} resizable>
+          <HeaderCell>ID</HeaderCell>
+          <Cell dataKey="id" />
+        </Column>
+        <Column width={260} resizable>
+          <HeaderCell>Created at</HeaderCell>
+          <ObjectCell dataKey="created_at" />
+        </Column>
 
-          <Column width={200} resizable>
-            <HeaderCell>Actor</HeaderCell>
-            <ObjectCell dataKey="actor.login" />
-          </Column>
+        <Column width={200} resizable>
+          <HeaderCell>Actor</HeaderCell>
+          <ObjectCell dataKey="actor.login" />
+        </Column>
 
-          <Column width={300} resizable>
-            <HeaderCell>Repo</HeaderCell>
-            <ObjectCell dataKey="repo.name" />
-          </Column>
+        <Column width={300} resizable>
+          <HeaderCell>Repo</HeaderCell>
+          <ObjectCell dataKey="repo.name" />
+        </Column>
 
-          <Column width={300} resizable>
-            <HeaderCell>Commits</HeaderCell>
-            <CommitsCell />
-          </Column>
-        </Table>
-      </div>
+        <Column width={300} resizable>
+          <HeaderCell>Commits</HeaderCell>
+          <CommitsCell />
+        </Column>
+      </Table>
     );
   }
 }

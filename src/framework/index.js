@@ -6,7 +6,7 @@ export class Application extends BaseApplication {
     super(config);
 
     this.registerStore(require('../reducers'));
-    this.registerRoutes( require('../routes'));
+    this.registerRoutes(require('../routes'));
     this.registerLocales(require('../locales'));
   }
 }
