@@ -1,6 +1,9 @@
 import { AuthUser } from '@rsuite/framework/auth';
 
 class User extends AuthUser {
+  // 必须声明 tableName
+  static tableName = 'users';
+
   // 声明此 model 的字段
   // 主要是与其他 model 的关联
   creator = User;
