@@ -37,7 +37,7 @@ class PageHeader extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
-              <Nav.Item href="https://github.com/rsuite/rsuite-example-admin" >Github</Nav.Item>
+              <Nav.Item href="https://github.com/SevenOutman/rsuite-app" >Github</Nav.Item>
             </Nav>
           </Navbar.Collapse>
         </div>
