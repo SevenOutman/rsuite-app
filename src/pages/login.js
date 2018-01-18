@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import Frame from '../components/Frame';
-import Login from './login';
+import Login from './login/index';
 
 class LoginView extends Component {
+  static layoutProps = {
+    hideSidebar: true,
+  };
+
   render() {
     return (
-      <Frame
-        hideSidebar
-      >
-        {this.props.children || <Login />}
-      </Frame>
+      this.props.children || <Login />
     );
   }
 }
+
 module.exports = LoginView;

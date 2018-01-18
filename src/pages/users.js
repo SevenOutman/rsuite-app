@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import Frame from '../components/Frame';
-import UsersList from './users';
+import UserList from './users/index';
 
-class UsersListView extends Component {
 
+class UsersView extends Component {
   render() {
     return (
-      <Frame>
-        {this.props.children || <UsersList />}
-      </Frame>
+      this.props.children || <UserList />
     );
   }
 }
 
-module.exports = UsersListView;
+module.exports = UsersView;

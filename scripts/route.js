@@ -20,12 +20,12 @@ function transform(treeNode, siblingsArray = []) {
       return null;
     }
     return {
-      path: fileName,
+      path: fileName.replace('_', ':'),
       component: `require('${path.relative(DIR_ROUTES, treeNode.path)}')`,
     };
   }
   const dirRoute = {
-    path: treeNode.name,
+    path: treeNode.name.replace('_', ':'),
   };
   const componentFile = siblingsArray.find(item => item.type === 'file' && `${treeNode.name}${item.extension}` === item.name);
   if (componentFile) {

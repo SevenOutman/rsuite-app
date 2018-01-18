@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { page } from '@rsuite/framework/view';
 import * as actionCreators from '../../actions/events';
 import EventTable from '../../components/Events/EventTable';
 import PageTitleBar from '../../components/PageTitleBar';
 
 class EventListView extends Component {
+
   render() {
     return (
       <div className="page-content">
@@ -31,4 +33,4 @@ function mapDispatch2Props(dispatch) {
   };
 }
 
-module.exports = connect(mapState2Props, mapDispatch2Props)(EventListView);
+module.exports = page(EventListView, connect(mapState2Props, mapDispatch2Props));

@@ -1,37 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Dropdown
-} from 'rsuite';
+import { Dropdown } from 'rsuite';
 import { Cell } from 'rsuite-table';
 import { FormattedMessage } from 'react-intl';
-import PageTitleBar from '../../components/PageTitleBar';
+import { localize as l } from '@rsuite/framework/helpers';
 import TableView from '../TableView';
 import {
   ObjectCell,
   StatusCell,
   DateTimeCell,
-  ActionsCell
+  ActionsCell,
 } from '../CustomTableCells';
 import UserModal from './UserModal';
 import chain from '../../utils/createChainedFunction';
-import { localize as l } from '@rsuite/framework/helpers';
 
 const propTypes = {
   data: PropTypes.array,
   status: PropTypes.string,
   onFetchRepos: PropTypes.func,
   // table默认高度
-  tableDefaultHeight: PropTypes.number.isRequired,
+  tableDefaultHeight: PropTypes.number,
   // 框架的高度用于计算 table的高度
-  frameHeight: PropTypes.number.isRequired,
+  frameHeight: PropTypes.number,
   page: PropTypes.object,
-  onFetchUsers: PropTypes.func.isRequired,
+  onFetchUsers: PropTypes.func,
 };
 
 const defaultProps = {
   tableDefaultHeight: 400,
-  frameHeight: 140
+  frameHeight: 140,
 };
 
 const contextTypes = {
@@ -56,17 +53,17 @@ class UserTable extends Component {
         keys: [
           { label: '全部', value: 'all' },
           { label: '用户名', value: 'name' },
-          { label: '邮箱', value: 'email' }
-        ]
+          { label: '邮箱', value: 'email' },
+        ],
       },
       addButton: {
         onClick: this.handleAddButtonClick,
-        text: '新建'
+        text: '新建',
       },
       status: 'ENABLE',
       orderColumn: 'createTime',
       orderType: 'desc',
-      total: page.total || 0
+      total: page.total || 0,
     });
   }
 
@@ -74,7 +71,7 @@ class UserTable extends Component {
     let items = [
       <Dropdown.Item key={1} eventKey="ALL">全部</Dropdown.Item>,
       <Dropdown.Item key={2} eventKey="ROLE_USER">用户</Dropdown.Item>,
-      <Dropdown.Item key={3} eventKey="ROLE_GROUP">管理员</Dropdown.Item>
+      <Dropdown.Item key={3} eventKey="ROLE_GROUP">管理员</Dropdown.Item>,
     ];
     return (
       <Dropdown activeKey={'ALL'} select onSelect={chain(this.handleChangeSystemRole)}>
@@ -87,8 +84,8 @@ class UserTable extends Component {
     let plugins = [
       {
         label: '系统角色',
-        component: this.getSystemRoleFilterComponent()
-      }
+        component: this.getSystemRoleFilterComponent(),
+      },
     ];
     return plugins;
 
@@ -97,7 +94,7 @@ class UserTable extends Component {
   getActions() {
     return [{
       label: '编辑',
-      onClick: this.handleEdit
+      onClick: this.handleEdit,
     }];
   }
 
@@ -112,65 +109,65 @@ class UserTable extends Component {
           width: 80,
           fixed: true,
           sortable: true,
-          resizable: true
+          resizable: true,
         },
         label: l('status'),
-        cell: <StatusCell dataKey="status" />
+        cell: <StatusCell dataKey="status" />,
       },
       {
         col: {
           width: 200,
           fixed: true,
           sortable: true,
-          resizable: true
+          resizable: true,
         },
         label: <FormattedMessage id="username" />,
-        cell: <Cell dataKey="name" />
+        cell: <Cell dataKey="name" />,
       },
       {
         col: {
           width: 200,
           sortable: true,
-          resizable: true
+          resizable: true,
         },
         label: <FormattedMessage id="email" />,
-        cell: <Cell dataKey="email" />
+        cell: <Cell dataKey="email" />,
       },
       {
         col: {
           width: 200,
           sortable: true,
-          resizable: true
+          resizable: true,
         },
         label: <FormattedMessage id="userGroup" />,
-        cell: <ObjectCell dataKey="group.name" />
+        cell: <ObjectCell dataKey="group.name" />,
       },
       {
         col: {
           width: 200,
           sortable: true,
-          resizable: true
+          resizable: true,
         },
         label: <FormattedMessage id="creator" />,
-        cell: <ObjectCell dataKey="creator.name" />
+        cell: <ObjectCell dataKey="creator.name" />,
       },
       {
         col: {
           width: 200,
           sortable: true,
-          resizable: true
+          resizable: true,
         },
         label: <FormattedMessage id="createTime" />,
-        cell: <DateTimeCell dataKey="createTime" />
+        cell: <DateTimeCell dataKey="createTime" />,
       },
     ];
     const operationCell = {
       col: {
         width: 300,
-        resizable: true
+        resizable: true,
       },
       label: <FormattedMessage id="operation" />,
-      cell: <ActionsCell actions={this.getActions()} />
+      cell: <ActionsCell actions={this.getActions()} />,
     };
 
     cols.push(operationCell);
@@ -188,14 +185,14 @@ class UserTable extends Component {
   handleAddButtonClick = () => {
     this.setState({
       show: 'FORM_MODAL',
-      user: ''
+      user: '',
     });
   }
 
   handleEdit = (rowData) => {
     this.setState({
       show: 'FORM_MODAL',
-      user: rowData
+      user: rowData,
     });
   }
 
@@ -206,7 +203,7 @@ class UserTable extends Component {
 
   handleHideModal = () => {
     this.setState({
-      show: ''
+      show: '',
     });
   }
 
@@ -219,8 +216,7 @@ class UserTable extends Component {
     const { data } = this.props;
     const { show, user } = this.state;
     return (
-      <div className="page-content">
-        <PageTitleBar title="userList" />
+      <div>
         <TableView
           cacheKey="user.table"
           data={data}

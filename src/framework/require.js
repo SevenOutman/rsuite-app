@@ -15,16 +15,6 @@ function requireConfig() {
   return requireContextAsObject(context);
 }
 
-function requireReducers() {
-  const context = require.context('../reducers', false, /\.js$/);
-  return requireContextAsObject(context);
-}
-
-function requireRoutes() {
-  const context = require.context('../routes', false, /\.js$/);
-  return requireContextAsObject(context);
-}
-
 function requireLocales() {
   const context = require.context('../locales', false, /\.js$/);
   return requireContextAsObject(context);
@@ -35,10 +25,14 @@ function requireModels() {
   return requireContextAsObject(context);
 }
 
+function requireLayouts() {
+  const context = require.context('../layouts', false, /\.js$/);
+  return requireContextAsObject(context);
+}
+
 module.exports = {
   requireConfig,
-  requireReducers,
-  requireRoutes,
   requireLocales,
   requireModels,
+  requireLayouts
 };

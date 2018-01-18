@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import Frame from '../components/Frame';
-import RepoList from './repos';
+import RepoList from './repos/index';
 
 class ReposView extends Component {
-
   render() {
     return (
-      <Frame>
-        {this.props.children || <RepoList />}
-      </Frame>
+      this.props.children || <RepoList />
     );
   }
 }

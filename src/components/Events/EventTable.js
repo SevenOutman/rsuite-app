@@ -4,8 +4,6 @@ import { Table, Column, Cell, HeaderCell } from 'rsuite-table';
 import { app } from '@rsuite/framework/helpers';
 
 import { TableResizeHoc } from '../../hoc';
-import PageTitleBar from '../../components/PageTitleBar';
-
 import { ObjectCell } from '../CustomTableCells';
 import { CommitsCell } from './CustomTableCells';
 import getTableLocale from '../getTableLocale';
@@ -14,11 +12,11 @@ const propTypes = {
   data: PropTypes.array,
   status: PropTypes.string,
   onFetchEvents: PropTypes.func,
-  tableHeight: PropTypes.number.isRequired,
+  tableHeight: PropTypes.number,
   // table默认高度
-  tableDefaultHeight: PropTypes.number.isRequired,
+  tableDefaultHeight: PropTypes.number,
   // 框架的高度用于计算 table的高度
-  frameHeight: PropTypes.number.isRequired,
+  frameHeight: PropTypes.number,
 };
 
 const defaultProps = {

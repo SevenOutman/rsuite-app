@@ -1,6 +1,9 @@
 /* eslint-disable global-require,no-underscore-dangle */
 import BaseApplication from '@rsuite/framework/application';
-import { requireConfig, requireLocales, requireModels, requireReducers, requireRoutes } from './require';
+import {
+  requireConfig, requireLayouts, requireLocales, requireModels, requireReducers,
+  requireRoutes,
+} from './require';
 
 export default class Application extends BaseApplication {
   constructor() {
@@ -10,16 +13,17 @@ export default class Application extends BaseApplication {
 
     // app local requires
     this.registerStore(require('../reducers'));
-    this.registerRoutes();
 
     // framework requires
+    this.registerRoutes();
     this.registerLocales(requireLocales());
+    this.registerLayouts(requireLayouts());
     // if config.useORM
     this.registerModels(requireModels());
   }
 
   /**
-   *
+   * @override
    */
   registerRoutes() {
     const pageRoutes = this.createPagesRoutes();
@@ -28,18 +32,42 @@ export default class Application extends BaseApplication {
 
   createPagesRoutes() {
     // 1. pre-generated
-    return require('../routes');
+    // return require('../routes');
 
     // 2. runtime
-    // const context = require.context('../pages', true, /\.js$/);
-    // let routes = {};
-    // let routeStack = [];
-    // const pages = context.keys().sort().map((module) => {
-    //   let routePath = module.replace(/^\.\/(.+)\.js$/, '$1');
-    //   let pageComp = context(module);
-    //   let namespace = routeStack.join('/');
-    //   let isInNamespace = namespace === '' || routePath.startsWith(`${namespace}/`);
-    // });
-    // return {};
+    const context = require.context('../pages', true, /\.js$/);
+    let routes = {};
+    let routeStack = [routes];
+    context.keys().sort().forEach((module) => {
+      let routePath = module
+        .replace(/^\.\/(.+)\.js$/, '$1')
+        .replace(/_(?=\w.*\/?)/g, ':');
+      let pageComp = context(module);
+      let namespace = routeStack.slice(1).map(route => route.path).join('/');
+      let isInNamespace = namespace === '' || routePath.startsWith(`${namespace}/`);
+      while (!isInNamespace) {
+        routeStack.pop();
+        namespace = routeStack.slice(1).map(route => route.path).join('/');
+        isInNamespace = namespace === '' || routePath.startsWith(`${namespace}/`);
+      }
+      let currentRoute = routeStack[routeStack.length - 1];
+      let routePathSeg = routePath.substring(namespace === '' ? 0 : namespace.length + 1);
+      if (routePathSeg === 'index') {
+        currentRoute.indexRoute = {
+          component: pageComp,
+        };
+      } else {
+        let nextRoute = {
+          path: routePathSeg,
+          component: pageComp,
+        };
+        if (!currentRoute.childRoutes) {
+          currentRoute.childRoutes = [];
+        }
+        currentRoute.childRoutes.push(nextRoute);
+        routeStack.push(nextRoute);
+      }
+    });
+    return routes;
   }
 }

@@ -5,5 +5,10 @@ module.exports = {
    *  - %s title 的参数
    *  - {APP_NAME} app_name()
    */
-  titleTemplate: '%s - {APP_NAME}'
+  titleTemplate: '%s - {APP_NAME}',
+  /**
+   * 当 Page 不指定 layout 时默认使用的 layout
+   * 初始为 'default'
+   */
+  defaultLayout: 'frame',
 };

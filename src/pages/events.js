@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import Frame from '../components/Frame';
-import EventList from './events';
+import EventList from './events/index';
 
-
-class EventListView extends Component {
+class EventsView extends Component {
   render() {
     return (
-      <Frame>
-        {this.props.children || <EventList />}
-      </Frame>
+      this.props.children || <EventList />
     );
   }
 }
 
-module.exports = EventListView;
+module.exports = EventsView;
