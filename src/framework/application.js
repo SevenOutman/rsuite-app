@@ -2,7 +2,6 @@
 import BaseApplication from '@rsuite/framework/application';
 import {
   requireConfig, requireLayouts, requireLocales, requireModels, requireReducers,
-  requireRoutes,
 } from './require';
 
 export default class Application extends BaseApplication {
@@ -30,6 +29,10 @@ export default class Application extends BaseApplication {
     super.registerRoutes(pageRoutes);
   }
 
+  /**
+   * Traverse `pages` directory and generates route object
+   * Based on scripts/route.js generate()
+   */
   createPagesRoutes() {
     // 1. pre-generated
     // return require('../routes');

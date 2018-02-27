@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import SidebarMenu from './SidebarMenu';
 import SidebarToggler from './SidebarToggler';
 
-const contextTypes = {
-  menuItems: PropTypes.array
-};
+import { Sidebar } from '../constants/Menus';
 
 class PageSidebar extends Component {
   render() {
@@ -13,7 +10,7 @@ class PageSidebar extends Component {
       <div className="page-sidebar-wrapper">
         <div className="page-sidebar">
           <SidebarMenu
-            menuItems={this.context.menuItems}
+            menuItems={Sidebar}
           />
           <SidebarToggler />
         </div>
@@ -22,5 +19,4 @@ class PageSidebar extends Component {
   }
 }
 
-PageSidebar.contextTypes = contextTypes;
 export default PageSidebar;

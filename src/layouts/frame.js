@@ -15,11 +15,11 @@ const propTypes = {
 };
 
 const contextTypes = {
-  router: PropTypes.object.isRequired
+  router: PropTypes.object.isRequired,
 };
 
 const defaultProps = {
-  headerProps: {}
+  headerProps: {},
 };
 
 class FrameLayout extends Component {
@@ -68,7 +68,7 @@ class FrameLayout extends Component {
   render() {
     const { children, hideSidebar } = this.props;
     const styles = {
-      marginLeft: hideSidebar ? 0 : 200
+      marginLeft: hideSidebar ? 0 : 200,
     };
     return (
       <div>
@@ -84,8 +84,9 @@ class FrameLayout extends Component {
             {children}
             <PageFooter
               ref={(ref) => {
-                this.footer = ref;
+                this.footer = ref.getWrappedInstance();
               }}
+              abc={2}
             />
           </div>
         </div>
