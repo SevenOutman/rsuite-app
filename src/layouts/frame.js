@@ -84,7 +84,7 @@ class FrameLayout extends Component {
             {children}
             <PageFooter
               ref={(ref) => {
-                this.footer = ref.getWrappedInstance();
+                this.footer = ref;
               }}
               abc={2}
             />

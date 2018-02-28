@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import { toggleClass } from 'dom-lib';
+import { component } from '@rsuite/framework/view';
+import { localize as l } from '@rsuite/framework/helpers';
 
 const propTypes = {
   open: PropTypes.bool,
@@ -16,7 +18,7 @@ const defaultProps = {
 };
 
 const contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 class SidebarMenu extends Component {
@@ -61,7 +63,7 @@ class SidebarMenu extends Component {
                 key={index}
                 className={this.context.router.isActive(item.link) ? 'active' : null}
               >
-                <Link to={item.link}><FormattedMessage id={item.localeKey} /></Link>
+                <Link to={item.link}>{l(item.localeKey)}</Link>
               </li>
             );
           })
@@ -77,7 +79,7 @@ class SidebarMenu extends Component {
       </ul>
     );
   }
-};
+}
 
 SidebarMenu.propTypes = propTypes;
 SidebarMenu.defaultProps = defaultProps;

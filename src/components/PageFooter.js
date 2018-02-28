@@ -15,7 +15,7 @@ class PageFooter extends Component {
     const locale = config('app.locale');
     return (
       <div className={classes}>
-        <span className="copyright">&copy; COPYRIGHT HYPERS 2016</span>
+        <span className="copyright">&copy; COPYRIGHT HYPERS {(new Date()).getFullYear()}</span>
 
         <div className="pull-right" style={{ padding: '7px 18px' }}>
           <Dropdown
@@ -38,4 +38,4 @@ class PageFooter extends Component {
 
 PageFooter.propTypes = propTypes;
 
-export default component(PageFooter);
+export default PageFooter;

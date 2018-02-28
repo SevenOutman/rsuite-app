@@ -16,7 +16,20 @@
     &.fixed {
         position: fixed;
         bottom: 0;
-        width: 100%;
+        left: 0;
+        right: 0;
         z-index: 1001;
     }
+}
+
+.page-sidebar-wrapper + .page-content-wrapper {
+  .footer.fixed {
+    left: 200px;
+  }
+}
+
+.sidebar-hide .page-sidebar-wrapper + .page-content-wrapper {
+  .footer.fixed {
+    left: 18px;
+  }
 }

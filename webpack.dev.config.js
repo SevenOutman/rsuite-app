@@ -11,7 +11,8 @@ const config = {
   ],
   resolve: {
     alias: {
-      react: resolve(__dirname, 'node_modules/@rsuite/framework/node_modules/react'),
+      react: resolve(__dirname, 'node_modules/rsuite-framework/node_modules/react'),
+      '@rsuite/framework': resolve(__dirname, 'node_modules/rsuite-framework'),
     },
   },
   output: {
